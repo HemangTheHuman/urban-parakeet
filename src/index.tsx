@@ -61,7 +61,7 @@ const App: React.FC = () => {
   const exchangeCodeForToken = async (authCode: string) => {
     try {
       setAuthStatus("Exchanging authorization code...");
-      const response = await fetch("http://localhost:3001/api/token", {
+      const response = await fetch("/api/token", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ code: authCode }),
@@ -85,7 +85,7 @@ const App: React.FC = () => {
   const fetchSites = async (token: string): Promise<boolean> => {
     try {
       setAuthStatus("Fetching your sites...");
-      const response = await fetch("http://localhost:3001/api/sites", {
+      const response = await fetch("/api/sites", {
         method: "GET",
         headers: { "Authorization": `Bearer ${token}` },
       });
@@ -154,7 +154,7 @@ document.head.appendChild(script);
     try {
       console.log("Fetching details from API...");
       // 1. Fetch Details
-      const detailsRes = await fetch(`http://localhost:3001/api/sites/${siteId}`, {
+      const detailsRes = await fetch(`/api/sites/${siteId}`, {
          headers: { "Authorization": `Bearer ${token}` }
       });
       console.log("Details API responded with status:", detailsRes.status);
@@ -171,7 +171,7 @@ document.head.appendChild(script);
       }
 
       // 2. Fetch Registered Scripts first (Step 3)
-      const registeredScriptsRes = await fetch(`http://localhost:3001/api/sites/${siteId}/registered_scripts`, {
+      const registeredScriptsRes = await fetch(`/api/sites/${siteId}/registered_scripts`, {
          headers: { "Authorization": `Bearer ${token}` }
       });
 
@@ -255,7 +255,7 @@ document.head.appendChild(script);
        // Timezone simple extraction
        const tmz = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-       const res = await fetch(`http://localhost:3001/api/verify?key=${key}&origin=${domain}&url=${domain}&path=/&mode=auto&timezone=${tmz}`);
+       const res = await fetch(`/api/verify?key=${key}&origin=${domain}&url=${domain}&path=/&mode=auto&timezone=${tmz}`);
        
        if (res.ok) {
           const data = await res.json();
@@ -298,7 +298,7 @@ document.head.appendChild(script);
         // Using a basic hash for versioning based on key so we can update it if key changes
         const version = "1.0." + Math.floor(Math.random() * 10000); 
 
-        const registerRes = await fetch(`http://localhost:3001/api/sites/${siteId}/registered_scripts/inline`, {
+        const registerRes = await fetch(`/api/sites/${siteId}/registered_scripts/inline`, {
              method: "POST",
              headers: {
                 "Authorization": `Bearer ${token}`,
@@ -322,7 +322,7 @@ document.head.appendChild(script);
         const scriptId = registeredData.id;
 
         // 3. Fetch current custom code to append to it safely
-        const codeRes = await fetch(`http://localhost:3001/api/sites/${siteId}/custom_code`, {
+        const codeRes = await fetch(`/api/sites/${siteId}/custom_code`, {
            headers: { "Authorization": `Bearer ${token}` }
         });
         
@@ -345,7 +345,7 @@ document.head.appendChild(script);
             version: version
         });
 
-        const putRes = await fetch(`http://localhost:3001/api/sites/${siteId}/custom_code`, {
+        const putRes = await fetch(`/api/sites/${siteId}/custom_code`, {
             method: "PUT",
             headers: {
                "Authorization": `Bearer ${token}`,
@@ -377,7 +377,7 @@ document.head.appendChild(script);
 
       try {
         // 1. Get current registered scripts to find the MultiLipi one
-        const registeredScriptsRes = await fetch(`http://localhost:3001/api/sites/${siteId}/registered_scripts`, {
+        const registeredScriptsRes = await fetch(`/api/sites/${siteId}/registered_scripts`, {
            headers: { "Authorization": `Bearer ${token}` }
         });
 
@@ -400,7 +400,7 @@ document.head.appendChild(script);
         }
 
         // 2. Remove from Custom Code
-        const codeRes = await fetch(`http://localhost:3001/api/sites/${siteId}/custom_code`, {
+        const codeRes = await fetch(`/api/sites/${siteId}/custom_code`, {
            headers: { "Authorization": `Bearer ${token}` }
         });
         
@@ -415,7 +415,7 @@ document.head.appendChild(script);
 
         const filteredScripts = existingScripts.filter((s: any) => s.id !== scriptIdToRemove);
 
-        const putRes = await fetch(`http://localhost:3001/api/sites/${siteId}/custom_code`, {
+        const putRes = await fetch(`/api/sites/${siteId}/custom_code`, {
             method: "PUT",
             headers: {
                "Authorization": `Bearer ${token}`,

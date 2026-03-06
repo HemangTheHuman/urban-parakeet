@@ -2,7 +2,7 @@
   "name": "MultiLipi",
   "version": "1.0.0",
   "scripts": {
-    "dev": "npm install && concurrently \"webflow extension serve\" \"npm run watch-webpack\" \"node server.js\"",
+    "dev": "npm install && concurrently \"webflow extension serve\" \"npm run watch-webpack\"",
     "build": "npm run build-webpack",
     "bundle": "npm run build && webflow extension bundle",
     "watch-webpack": "webpack --config webpack.config.mjs --mode development --watch",
@@ -36,7 +36,6 @@
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
     "react-dom": "^18.2.0",
-    "sqlite3": "^5.1.7",
     "webflow-api": "^3.2.2"
   },
   "babel": {
