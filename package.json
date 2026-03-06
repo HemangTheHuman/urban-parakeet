@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "npm install && concurrently \"webflow extension serve\" \"npm run watch-webpack\" \"node server.js\"",
-    "build": "npm run build-webpack && webflow extension bundle",
+    "build": "npm run build-webpack",
+    "bundle": "npm run build && webflow extension bundle",
     "watch-webpack": "webpack --config webpack.config.mjs --mode development --watch",
     "build-webpack": "webpack --config webpack.config.mjs --mode production",
     "lint": "eslint . --ext .ts,.tsx"
