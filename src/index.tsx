@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 
-const REDIRECT_URI = "https://proacting-gargety-theodore.ngrok-free.dev/index.html";
+const REDIRECT_URI = "https://urban-parakeet-chi.vercel.app/index.html";
 
 const App: React.FC = () => {
   const [code, setCode] = useState<string | null>(null);
