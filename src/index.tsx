@@ -536,7 +536,20 @@ document.head.appendChild(script);
                                     </>
                                 ) : (
                                     <div style={{marginTop: '24px', borderTop: '1px solid var(--card-border)', paddingTop: '20px'}}>
-                                        <p style={{fontSize: '0.9rem', color: '#a1a1aa', marginBottom: '12px'}}>Connect MultiLipi to this site by entering your Project Key.</p>
+                                        <div style={{fontSize: '0.9rem', color: '#a1a1aa', marginBottom: '16px', lineHeight: '1.5', background: 'rgba(255,255,255,0.03)', padding: '12px', borderRadius: '8px', border: '1px solid #27272a'}}>
+                                            <p style={{marginBottom: '8px', color: '#fff', fontWeight: 600}}>How to obtain your Project Key:</p>
+                                            <ol style={{paddingLeft: '20px', margin: '0 0 12px 0'}}>
+                                                <li style={{marginBottom: '8px'}}>
+                                                    <strong>Already have a project?</strong> <br/>
+                                                    Go to your <a href="https://dashboard.multilipi.com" target="_blank" rel="noreferrer" style={{color: '#3b82f6', textDecoration: 'none'}}>Dashboard</a>, open the project, and go to the setup page to get the key.
+                                                </li>
+                                                <li>
+                                                    <strong>No project yet?</strong> <br/>
+                                                    <a href={`https://dashboard.multilipi.com/domain/setup/auto/?url=${domain}&technology=webflow&organization_name=${encodeURIComponent(domain.replace(/[-.]/g, ' ').split(' ').map((w: string) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' '))}`} target="_blank" rel="noreferrer" style={{color: '#3b82f6', textDecoration: 'none'}}>Click here to create a project</a>.
+                                                </li>
+                                            </ol>
+                                            <p style={{margin: 0}}>Once you have your key, enter it below to connect:</p>
+                                        </div>
                                         <input 
                                             type="text" 
                                             placeholder="Enter Project Key..." 
